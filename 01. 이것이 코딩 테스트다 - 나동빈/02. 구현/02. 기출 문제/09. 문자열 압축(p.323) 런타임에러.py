@@ -23,7 +23,7 @@ for i in range(1, L + 1):  # i가 1부터 리스트 절반까지만 돈다. i = 
         # temp1과 temp2에 i개만큼(비교할문자의 길이) 들어갔다면 비교한다
         if len(temp1) == i and len(temp2) == i:
 
-            if len(temp1) + len(temp2) != 0 and temp1 == temp2:
+            if temp1 == temp2:
                 cnt += 1
             else:
                 if cnt > 1:
@@ -44,8 +44,11 @@ for i in range(1, L + 1):  # i가 1부터 리스트 절반까지만 돈다. i = 
     num_press.append(len(string))
     print(f'num_press = {num_press}')
     result = []
-answer = min(num_press)
-print(answer)
+if len(num_press) != 0:
+    answer = min(num_press)
+else:
+    answer = 1
+
 
 # a a b a b c d c d
 

@@ -44,7 +44,7 @@ for i in range(1, L + 1):  # i가 1부터 리스트 절반까지만 돈다. i = 
     num_press.append(len(string))
     print(f'num_press = {num_press}')
     result = []
-if len(num_press) != 0:
+if len(num_press) != 0:    # 원래 answer= min(num_press)만 썼는데 s의길이가 1일때 numpress에 빈 리스트가 들어가서 min 함수 런타임에러가 났었다
     answer = min(num_press)
 else:
     answer = 1

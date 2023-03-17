@@ -16,6 +16,7 @@ lock = [[1, 1, 1, 1],
         [1, 1, 1, 1],
         [1, 0, 1, 1],
         [0, 1, 1, 1]]
+
 def solution(key, lock):
     n = len(lock)
     m = len(key)
@@ -33,7 +34,6 @@ def solution(key, lock):
     #     print(new_lock[i], end='\n')
 
     for _ in range(4):
-
         key = rotation(key)
     # 자물쇠 + 키  해서 모든 자물쇠의 합이 1이면 True
         for a in range(n-m+1,2*n):

@@ -40,7 +40,7 @@ def solution(key, lock):
 
     return False
 
-#입력 예시
+## Input
 key = [[0, 1],
        [1, 0]]
 lock = [[1, 1, 1, 1],
@@ -48,4 +48,5 @@ lock = [[1, 1, 1, 1],
         [1, 0, 1, 1],
         [0, 1, 1, 1]]
 
-solution(key, lock)
+# Output
+print(solution(key, lock))

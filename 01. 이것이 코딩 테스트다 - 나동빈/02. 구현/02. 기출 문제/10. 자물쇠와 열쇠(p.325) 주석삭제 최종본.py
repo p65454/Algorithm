@@ -1,3 +1,6 @@
+# 10. 자물쇠와 열쇠 (p. 325)
+# https://programmers.co.kr/learn/courses/30/lessons/60059
+
 def rotation(key):
     rotated_key = list(map(list, zip(*key[::-1])))  # 시계방향 회전
     return rotated_key

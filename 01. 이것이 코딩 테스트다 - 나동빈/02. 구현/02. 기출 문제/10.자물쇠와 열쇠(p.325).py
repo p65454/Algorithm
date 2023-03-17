@@ -32,32 +32,30 @@ def rotation(key):
     return rotated_key
 
 def right(n,m):
+    for t in range(n):
+        for i in range(n):
+            global cnt
+            global sum_lock
+            for k in range(m):
+            #오른쪽으로 이동
+                for j in range(m):
+                    if j + i < n:
+                        print(f'i = {i}, j = {j}, k = {k}, key[k][j] = {key[k][j]}, lock[k][j+i] = {lock_clone[k][j + i]} ')
 
 
-    for i in range(n):
-        global cnt
-        global sum_lock
-        for k in range(m):
+                        if sum(lock[k]) < n:  # 가로줄에 0인부분이 있을때만 비교한다
 
-        #오른쪽으로 이동
-            for j in range(m):
-                if j + i < n:
-                    print(f'i = {i}, j = {j}, k = {k}, key[k][j] = {key[k][j]}, lock[k][j+i] = {lock_clone[k][j + i]} ')
+                            if j + i < n:  # 오른쪽으로 이동하다가 넘어가는 부분은 비교하지 않는다.
+                                #print(f'key[k][j] = {key[k][j]}, lock[k][j+k] = {lock[k][j + k]} ')
 
-
-                    if sum(lock[k]) < n:  # 가로줄에 0인부분이 없을때만 비교한다
-
-                        if j + i < n:  # 오른쪽으로 이동하다가 넘어가는 부분은 비교하지 않는다.
-                            #print(f'key[k][j] = {key[k][j]}, lock[k][j+k] = {lock[k][j + k]} ')
-
-                            if key[k][j] == 1 and lock_clone[k][j+i] == 0:   # 열쇠가 들어갈 공간이 있으면
-                                cnt += 1
-                                #print(f'cnt = {cnt}')
-        print(f'cnt = {cnt}')
-        if cnt == count_zero:
-            checklist.append(cnt)
-            break
-        cnt = 0
+                                if key[k][j] == 1 and lock_clone[k+t][j+i] == 0:   # 열쇠가 들어갈 공간이 있으면
+                                    cnt += 1
+                                    #print(f'cnt = {cnt}')
+            print(f'cnt = {cnt}')
+            if cnt == count_zero:
+                checklist.append(cnt)
+                break
+            cnt = 0
 
     return cnt
 
@@ -97,7 +95,7 @@ def down(n,m):
 #             break
 count_zero = lock_clone[np.where(lock_clone == 0)].size
 # print(f'count_zero = {count_zero}')
-# lock_clone = np.delete(lock_clone, 0, axis=0)
+lock_clone = np.delete(lock_clone, 0, axis=0)
 # print(lock_clone)
 # right(n,m)
 # lock_clone = np.delete(lock_clone, 0, axis=0)

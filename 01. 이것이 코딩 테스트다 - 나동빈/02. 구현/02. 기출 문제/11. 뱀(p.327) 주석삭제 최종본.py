@@ -73,7 +73,7 @@ while True:
 
         if d < len(snake_direction)-1: # index 에러 나지 않도록 범위 설정
             d += 1
-
+print(cnt)
 # 6
 # 3
 # 3 4

@@ -18,8 +18,8 @@ def solution(key, lock):
     for _ in range(4):
         key = rotation(key)
     # 자물쇠 + 키  해서 모든 자물쇠의 합이 1이면 True
-        for a in range(n-m+1,2*n):
-            for b in range(n-m+1,2*n):
+        for a in range(n-m+1, 2*n):
+            for b in range(n-m+1, 2*n):
                 for i in range(m):
                     for j in range(m):
                         new_lock[a+i][b+j] += key[i][j]

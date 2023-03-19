@@ -65,18 +65,14 @@ def direction(t, dir):
             dir -= 1
     return dir
 
-
-
 while True:
     snake_x = x + dx[dir]
     snake_y = y + dy[dir]
-
     # 1. 먼저 뱀은 몸길이를 늘려 머리를 다음 칸에 위치시킵니다.
     # 1-1 뱀이 벽에 부딪히지 않았으면서, 자신의 몸에 부딪히지도 않았을 때
     print(f'snake_x = {snake_x}, snake_y = {snake_y}, dir = {dir}, dx[dir] = {dx[dir]}, dy[dir] = {dy[dir]}')
 
     if snake_x >= 0 and snake_x < n and snake_y >= 0 and snake_y < n and board[snake_x][snake_y] != 1:
-
         # 2. 만약 이동한 칸에 사과가 있다면, 그 칸에 있던 사과가 없어지고 꼬리는 움직이지 않습니다.
         # 2-1 만약 사과가 있다면, 사과대신 뱀머리로 채운다
         if board[snake_x][snake_y] == -1:

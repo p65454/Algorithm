@@ -1,5 +1,5 @@
 def solution(n, build_frame):
-    map = [[0]*(n+1) for _ in range(n+1)]
+    #map = [[0]*(n+1) for _ in range(n+1)]
     # ki = [1, 0]  #기둥
     # bo = [0, 1]  #보
     ki_list = []
@@ -25,26 +25,33 @@ def solution(n, build_frame):
 
         #삭제
         else:
-            if build_frame[i][3] == 0:
-                #기둥일때
-                if build_frame[i][2] == 0:   # ㅣ = 기둥 ￣ = 보
-                    #기둥 삭제 가능 할 때 :  i￣ㅣ or ㅣ￣ i or ㅣ or ￣ ￣ㅣ￣ ￣
-                    if ([x-1, y, 0] in ki_list and [x-1, y+1, 1] in bo_list and [x, y+1, 1] not in bo_list) or (
-                            [x+1, y, 0] in ki_list and [x, y+1, 1] in bo_list and [x-1, y+1, 1] not in bo_list) or (
-                            [x-1, y+1, 1] not in bo_list and [x, y+1, 1] not in bo_list and [x, y+1, 0] not in ki_list) or (
-                            [x-2, y+1, 1] in bo_list and [x-1, y+1, 1] in bo_list and
+            #기둥일때
+            if build_frame[i][2] == 0:   # ㅣ = 기둥 ￣ = 보
+                #기둥 삭제 가능 할 때 :  i￣ㅣ or i￣ㅣ￣ ￣ or ㅣ￣ i or ￣ ￣ㅣ￣ i or ㅣ or ￣ ￣ㅣ￣ ￣
+                if ([x-1, y, 0] in ki_list and [x-1, y+1, 1] in bo_list and [x, y+1, 1] not in bo_list) or \
+                        ([x-1, y, 0] in ki_list and [x-1, y+1, 1] in bo_list and [x, y+1, 1] in bo_list and [x+1, y+1, 1] in bo_list) or \
+                        ([x+1, y, 0] in ki_list and [x, y+1, 1] in bo_list and [x-2, y+1, 1] in bo_list and [x-1, y+1, 1] in bo_list) or(
+                        [x+1, y, 0] in ki_list and [x, y+1, 1] in bo_list and [x-1, y+1, 1] not in bo_list) or (
+                        [x-1, y+1, 1] not in bo_list and [x, y+1, 1] not in bo_list and [x, y+1, 0] not in ki_list)\
+                        or ([x-2, y+1, 1] in bo_list and [x-1, y+1, 1] in bo_list and
                             [x, y+1, 1] in bo_list and [x+1, y+1, 1] in bo_list):
-                        ki_list.remove([x, y, 0])
-                else:
-                    #보 삭제 가능 할 때 : ㅣ￣ or ￣ㅣ or  ㅣ￣  ￣  ￣ㅣ
-                    if [x, y-1, 0] in ki_list or [x+1, y-1, 0] in ki_list or (
-                            [x-1, y-1, 0] in ki_list and [x-1, y, 1] in bo_list and
-                            [x+1, y, 1] in bo_list and [x+1, y-1, 0] in ki_list):
-                        bo_list.remove([x, y, 1])
 
-                    # # 삭제 불가능일때 : 기둥을 삭제했는데 그 위치에 보만 떠있을 때 ( (￣ ㅣ일때 and ￣ ￣ ㅣ 아닐때) or (ㅣ￣ 일때 and ㅣ￣ ￣아닐때) or ( ㅣ ￣ ㅣ 아닐때 )
-                    # if ([x - 1, y + 1, 1] in bo_list and [x - 2, y + 1, 1] not in bo_list) or (
-                    #         [x, y + 1, 1] in bo_list and [x + 1, y + 1, 1] in bo_list):
+                    ki_list.remove([x, y, 0])
+            else:
+                #보 삭제 가능 할 때 : ㅣ￣ or ㅣ￣ㅣ or ￣ㅣ orㅣ￣ ￣ㅣ or ㅣ￣ ￣ㅣ or ㅣ￣  ￣  ￣ㅣ
+                if ([x, y-1, 0] in ki_list and [x+1, y, 0] not in ki_list and [x+1, y, 1] not in bo_list) or \
+                        ([x, y-1, 0] in ki_list and [x+1, y-1, 0] in ki_list) or\
+                        ([x+1, y-1, 0] in ki_list and [x, y, 0] not in ki_list and [x-1, y, 1] not in bo_list) or \
+                        ([x, y-1, 0] in ki_list and [x+1, y, 1] in bo_list and [x+1, y-1, 0] in ki_list) or \
+                        ([x+1, y-1, 0] in ki_list and [x-1, y, 1] in bo_list and [x-1, y-1, 0] in ki_list) or\
+                        ([x-1, y-1, 0] in ki_list and [x-1, y, 1] in bo_list and
+                            [x+1, y, 1] in bo_list and [x+2, y-1, 0] in ki_list):
+
+                    bo_list.remove([x, y, 1])
+
+                # # 삭제 불가능일때 : 기둥을 삭제했는데 그 위치에 보만 떠있을 때 ( (￣ ㅣ일때 and ￣ ￣ ㅣ 아닐때) or (ㅣ￣ 일때 and ㅣ￣ ￣아닐때) or ( ㅣ ￣ ㅣ 아닐때 )
+                # if ([x - 1, y + 1, 1] in bo_list and [x - 2, y + 1, 1] not in bo_list) or (
+                #         [x, y + 1, 1] in bo_list and [x + 1, y + 1, 1] in bo_list):
 
     answer = ki_list + bo_list
     answer.sort()
@@ -89,10 +96,42 @@ result = [[2, 0, 0], [99, 0, 0], [99, 1, 0], [99, 1, 1], [100, 0, 0]]
 
 N4 = 5
 BUILD_FRAME4 = [[0, 0, 0, 1],
-                [0, 1, 0, 1],
-                [0, 2, 0, 1],
-                [0, 3, 0, 1],
-                [0, 4, 0, 1],
-                [0, 5, 0, 1]]
+                [1, 0, 1, 1],
+                [2, 0, 1, 1],
+                [3, 0, 1, 1],
+                [4, 0, 1, 1],
+                [5, 0, 1, 1]]
+
+N5 = 5
+BUILD_FRAME5 = \
+      [[0, 0, 0, 1],
+      [1, 0, 0, 1],
+      [1, 1, 0, 1],
+      [0, 1, 1, 1],
+      [1, 2, 1, 1],
+      [2, 2, 0, 1],
+      [2, 3, 1, 1],
+      [3, 0, 0, 1],
+      [2, 1, 1, 1],
+      [3, 1, 0, 1],
+      [2, 2, 1, 1],
+      [3, 1, 1, 1],
+      [4, 1, 0, 1],
+      [4, 2, 1, 1],
+      [5, 0, 0, 1],
+      [5, 2, 0, 1],
+      [0, 1, 1, 0],
+      [1, 1, 0, 0],
+      [1, 2, 1, 0],
+      [2, 2, 0, 0],
+      [2, 3, 1, 0],
+      [3, 0, 0, 0],
+      [2, 1, 1, 0],
+      [4, 1, 0, 0],
+      [5, 0, 0, 0],
+      [4, 2, 1, 0],
+      [5, 2, 0, 0]]
+
+result = [[0, 0, 0],[1, 0, 0],[1, 1, 0],[1, 2, 1],[2, 2, 0], [2, 2, 1],[3, 0, 0],[3, 1, 0],[3, 1, 1],[4, 1, 0],[4, 2, 1]]
 # Output
-solution(N4, BUILD_FRAME4)
+solution(N5, BUILD_FRAME5)

@@ -27,25 +27,25 @@ def solution(n, build_frame):
         else:
             #기둥일때
             if build_frame[i][2] == 0:   # ㅣ = 기둥 ￣ = 보
-                #기둥 삭제 가능 할 때 :  i￣ㅣ or i￣ㅣ￣ ￣ or ㅣ￣ i or ￣ ￣ㅣ￣ i or ㅣ or ￣ ￣ㅣ￣ ￣
+                #기둥 삭제 가능 할 때 :  i￣ㅣ or i￣ㅣ￣ ￣ or ㅣ￣ i or ￣ ￣ㅣ￣ i or ㅣ or ￣ ￣ㅣ￣ ￣ or ㅣ￣ㅣ￣ㅣ
                 if ([x-1, y, 0] in ki_list and [x-1, y+1, 1] in bo_list and [x, y+1, 1] not in bo_list) or \
                         ([x-1, y, 0] in ki_list and [x-1, y+1, 1] in bo_list and [x, y+1, 1] in bo_list and [x+1, y+1, 1] in bo_list) or \
                         ([x+1, y, 0] in ki_list and [x, y+1, 1] in bo_list and [x-2, y+1, 1] in bo_list and [x-1, y+1, 1] in bo_list) or(
                         [x+1, y, 0] in ki_list and [x, y+1, 1] in bo_list and [x-1, y+1, 1] not in bo_list) or (
-                        [x-1, y+1, 1] not in bo_list and [x, y+1, 1] not in bo_list and [x, y+1, 0] not in ki_list)\
-                        or ([x-2, y+1, 1] in bo_list and [x-1, y+1, 1] in bo_list and
-                            [x, y+1, 1] in bo_list and [x+1, y+1, 1] in bo_list):
+                        [x-1, y+1, 1] not in bo_list and [x, y+1, 1] not in bo_list and [x, y+1, 0] not in ki_list) or\
+                        ([x-1, y, 0] in ki_list and [x-1, y+1, 1] in bo_list and [x, y+1, 1] in bo_list and [x+1, y+1, 1] in bo_list) or\
+                        ([x-2, y+1, 1] in bo_list and [x-1, y+1, 1] in bo_list and [x, y+1, 1] in bo_list and [x+1, y+1, 1] in bo_list) or \
+                        ([x-1, y, 0] in ki_list and [x-1, y+1, 1] in bo_list and [x, y+1, 1] in bo_list and [x+1, y, 0] in ki_list):
 
                     ki_list.remove([x, y, 0])
             else:
-                #보 삭제 가능 할 때 : ㅣ￣ or ㅣ￣ㅣ or ￣ㅣ orㅣ￣ ￣ㅣ or ㅣ￣ ￣ㅣ or ㅣ￣  ￣  ￣ㅣ
+                #보 삭제 가능 할 때 : ㅣ￣  or ￣ㅣ or ㅣ￣ ￣ㅣ or ㅣ￣ ￣ㅣ or ㅣ￣  ￣  ￣ㅣ or ㅣ￣ㅣ
                 if ([x, y-1, 0] in ki_list and [x+1, y, 0] not in ki_list and [x+1, y, 1] not in bo_list) or \
-                        ([x, y-1, 0] in ki_list and [x+1, y-1, 0] in ki_list) or\
-                        ([x+1, y-1, 0] in ki_list and [x, y, 0] not in ki_list and [x-1, y, 1] not in bo_list) or \
-                        ([x, y-1, 0] in ki_list and [x+1, y, 1] in bo_list and [x+1, y-1, 0] in ki_list) or \
+                        ([x+1, y-1, 0] in ki_list and ([x, y, 0] not in ki_list or [x-1, y, 1] not in bo_list)) or \
+                        ([x, y-1, 0] in ki_list and [x+1, y, 1] in bo_list and [x+2, y-1, 0] in ki_list) or \
                         ([x+1, y-1, 0] in ki_list and [x-1, y, 1] in bo_list and [x-1, y-1, 0] in ki_list) or\
-                        ([x-1, y-1, 0] in ki_list and [x-1, y, 1] in bo_list and
-                            [x+1, y, 1] in bo_list and [x+2, y-1, 0] in ki_list):
+                        ([x-1, y-1, 0] in ki_list and [x-1, y, 1] in bo_list and [x+1, y, 1] in bo_list and [x+2, y-1, 0] in ki_list) or \
+                        ([x, y-1, 0] in ki_list and [x+1, y-1, 0] in ki_list):
 
                     bo_list.remove([x, y, 1])
 
@@ -134,4 +134,4 @@ BUILD_FRAME5 = \
 
 result = [[0, 0, 0],[1, 0, 0],[1, 1, 0],[1, 2, 1],[2, 2, 0], [2, 2, 1],[3, 0, 0],[3, 1, 0],[3, 1, 1],[4, 1, 0],[4, 2, 1]]
 # Output
-solution(N5, BUILD_FRAME5)
+solution(N1, BUILD_FRAME1)

@@ -9,7 +9,7 @@ for i in home:
 
 ans1 = 0
 ans2 = 0
-avg = sum_home // n
+avg = sum_home / n
 print(f'avg = {avg}')
 if n <= 2:
     print(home[0])

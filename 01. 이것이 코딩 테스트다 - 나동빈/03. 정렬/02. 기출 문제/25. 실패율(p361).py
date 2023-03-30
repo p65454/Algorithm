@@ -4,8 +4,8 @@
 def solution(N, stages):
     stages.sort()
     fail_list = []
-    fail = 0
-    num = 0
+    #fail = 0
+    #num = 0
     cnt = len(stages)
     while cnt != 0:
         cnt = len(stages)
@@ -39,7 +39,7 @@ stages = [2,1,2,6,2,4,3,3]
 #stages = [4,4,4,4,4,4]
 result = [3,4,2,1,5]
 
-print(solution(N, stages)
+print(solution(N, stages))
 
 
 

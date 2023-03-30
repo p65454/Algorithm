@@ -7,8 +7,7 @@ card = []
 for i in range(n):
     card.append(int(input()))
 
-print(card)
-
+heapq.heapify(card)
 sum_card = 0
 front = 0
 while len(card) != 1:
@@ -17,7 +16,6 @@ while len(card) != 1:
     sum_card += front
     heapq.heappush(card, front)
     front = 0
-
     print(f'card = {card}, sum_card = {sum_card}, front={front}')
 
 print(sum_card)

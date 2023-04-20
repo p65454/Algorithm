@@ -1,67 +1,57 @@
 # https://www.acmicpc.net/problem/18352
 from collections import deque
-n, m, k, x = map(int, input().split())
-array = [[]]
-graph = [[]]
+import sys
+n, m, k, x = map(int, sys.stdin.readline().split())
+graph = [[] for _ in range(n+1)]
 for _ in range(m):
-    array.append(list(map(int, input().split())))
-for _ in range(n):
-    graph.append([])
-for _ in range(n-m):
-    array.append([])
+    a, b = map(int, sys.stdin.readline().split())
+    graph[a].append(b)
 
-
-print(array)
 print(graph)
+
+distance = [-1] * (n + 1)
+distance[x] = 0
+
+queue = deque([x])
+
+while queue:
+    v = queue.popleft()
+
+    for i in graph[v]:
+        if distance[i] == -1:
+            distance[i] = distance[v] + 1
+            queue.append(i)
+
+print(distance)
+
+check = False
+
 for i in range(1, n+1):
-    for j in range(1, n+1):
-        if array[j] and array[j][0] == i:
-            graph[i].append(array[j][1])
+    if distance[i] == k:
+        check = True
+        print(i)
 
-
-
-
-print(graph)
-cnt = 0
-def bfs(graph, x, visited):
-    queue = deque([x])
-    visited[x] = True
-    result = []
-    while queue:
-        v = queue.popleft()
-        temp = []
-        #print(v, end=' ')
-        for i in graph[v]:
-            temp.append(i)
-
-            if not visited[i]:
-                queue.append(i)
-                visited[i] = True
-        result.append(temp)
-        print(result)
-    return result
-
-visited = [False] * (n+1)
-num_list = bfs(graph, x, visited)
-print(num_list)
-
-
-list_k = num_list[k-1]
-for i in range(k-1):
-    set_list = set(list_k) - set(num_list[i])
-    list_k = set_list
-print(list_k)
-list_k = list(list_k)
-list_k.sort()
-
-
-
-
-if not list_k:
+if not check:
     print(-1)
-else:
-    for i in list_k:
-        print(i, end='\n')
+
+
+
+# list_k = num_list[k-1]
+# for i in range(k-1):
+#     set_list = set(list_k) - set(num_list[i])
+#     list_k = set_list
+# print(list_k)
+# list_k = list(list_k)
+# list_k.sort()
+#
+#
+#
+#
+# if not list_k:
+#     print(-1)
+# else:
+#     for i in list_k:
+#         print(i, end='\n')
 
 # for i in num_list:
 #     num_list2.append((i, num_list.count(i)))

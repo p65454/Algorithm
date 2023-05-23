@@ -21,8 +21,11 @@ def dfs(x, y):
 result = 0
 for i in range(n):
     for j in range(m):
-        if dfs(i, j) == True:  """어차피 처음으로 붙어있는 아이스크림 덩어리를 만나는 순간 재귀로 들어가서 
-                                    덩어리째로 다 1이 들어가고 True는 한번만 반환하기 때문에, 아이스크림 덩어리당 result에 1씩 더해진다"""
+        if dfs(i, j) == True:
+            """어차피 처음으로 붙어있는 아이스크림 덩어리를 만나는 순간 재귀로 들어가서 
+            덩어리째로 다 1이 들어가고 True는 한번만 반환하기 때문에, 아이스크림 덩어리당 result에 1씩 더해진다"""
+
             result += 1
+            print(result)
 print(result)
 

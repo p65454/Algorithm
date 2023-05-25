@@ -1,34 +1,30 @@
 #https://programmers.co.kr/learn/courses/30/lessons/60058
-p = list(input())
-del p[0]
-del p[-1]
+
 #print(p)
-memory_u = []
+
 # '올바른 괄호 문자열' 인지 아닌지 테스트하는 함수
 def good_string_test(p):
     cnt = 0
-    if p:
-        if p[0] == '(' and p[-1] == ')':
-            for i in p:
-                if i == '(':
-                    cnt += 1
-                if i == ')':
-                    cnt -= 1
+
+    if p[0] == '(' and p[-1] == ')':
+        for i in p:
+            if i == '(':
+                cnt += 1
+            else:
+                cnt -= 1
                 if cnt < 0:
                     return False
-            return True
-        else:
-            return False
+        return True
     else:
         return False
 
+
 # p346을 수행하는 함수
 def transform1(p):
-    global u, v
     temp = []
-
-    if not p:
-        return p
+    answer = ''
+    if p == '':
+        return answer
 
     for i in range(len(p)):
         if p[i] == '(':
@@ -38,47 +34,36 @@ def transform1(p):
         if sum(temp) == 0:
             u = p[:i+1]
             v = p[i+1:]
-            print(f'u = {u}')
-            print(f'v = {v}')
             break
+    print(f'u = {u}')
+    print(f'v = {v}')
 
-
+    # 올바른괄호문자열 이면
+    print(good_string_test(u))
+    print('-------------------')
     if good_string_test(u):
-        memory_u.append(u)
-        transform1(v)
-    else:
-        newstring = []
-        newstring.append('(')
-        newstring.append(transform1(v))
-        newstring.append(')')
-        print(u)
-        del u[0]
-        del u[-1]
-        for i in u:
-            if i == '(':
-                i = ')'
-            else:
-                i = '('
-        for i in u:
-            newstring.append(i)
+        answer = u + transform1(v)
+        print(answer)
 
-    return memory_u + newstring
+    #올바른괄호문자열 아니면
+    else:
+        answer = '('
+        answer += transform1(v)
+        answer += ')'
+
+        u = list(u[1:-1])
+
+        for i in range(len(u)):
+            if u[i] == '(':
+                u[i] = ')'
+            else:
+                u[i] = '('
+
+        answer += ''.join(u)
+        print(f'answer = {answer}')
+    return answer
 # p347을 수행하는 함수
-def transform2(u, v):
-    newstring = []
-    newstring.append('(')
-    newstring.append(transform1(v))
-    newstring.append(')')
-    del u[0]
-    del u[-1]
-    for i in u:
-        if i == '(':
-            i = ')'
-        else:
-            i = '('
-    for i in u:
-        newstring.append(i)
-    return newstring
+
 
 
 
@@ -87,12 +72,13 @@ def transform2(u, v):
 def solution(p):
     #print(good_string_test(p))
     if good_string_test(p):
-        a = '\"' + ''.join(p) + '\"'
-        answer = print(a)
+        answer = ''.join(p)
     else:
-        a = '\"' + ''.join(transform1(p)) + '\"'
-        answer = print(a)
+        answer = transform1(p)
+        #answer = transform1(p)
 
     return answer
 
-solution(p)
+
+p = "()))((()"
+print(solution(p))

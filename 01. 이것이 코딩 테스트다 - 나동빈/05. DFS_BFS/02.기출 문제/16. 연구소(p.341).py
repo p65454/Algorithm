@@ -8,6 +8,7 @@ for _ in range(n):
 
 dx = [0, 0, -1, 1]
 dy = [1, -1, 0, 0]
+
 def bfs(x, y, array_proto):
     queue = deque()
     queue.append((x, y))
@@ -57,15 +58,6 @@ for i in range(len(wall_comb)):
 
 print(max(size_safety))
 
-
-
-
-
-
-
-
-
-
 # for i in range(n):
 #     for a in range(0, m-2):
 #         if array[i][a] == 0:
@@ -87,10 +79,6 @@ print(max(size_safety))
 #                 else:
 #                     continue
 #                 print(array)
-
-
-
-
 
 
 

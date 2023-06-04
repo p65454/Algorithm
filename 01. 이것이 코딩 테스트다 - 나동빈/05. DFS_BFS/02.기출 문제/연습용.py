@@ -1,19 +1,9 @@
 
-res = []
-def f(i,N):
-    if i == N:
-        res.append(p)
-    else:
-        for j in range(i,N):
-            p[i],p[j] = p[j],p[i]
 
-            f(i+1,N)
-            p[i], p[j] = p[j], p[i] # 복구
+a = [(0,1), (1,0)]
+b = [(1,0), (0,1)]
 
 
-N = 3
-p = [x for x in range(1,N+1)]
-f(0,N)
 
 #print(-1 / 3)
 # n = int(input())

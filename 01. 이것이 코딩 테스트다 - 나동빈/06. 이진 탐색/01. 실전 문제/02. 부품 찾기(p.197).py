@@ -9,7 +9,7 @@ result = []
 def binary_search(array, target, start, end):
     if start > end:
         result.append('no')
-        return result
+        return
     mid = (start + end) // 2
     if array[mid] == target:
         result.append('yes')
@@ -17,7 +17,7 @@ def binary_search(array, target, start, end):
         return binary_search(array, target, start, mid - 1)
     else:
         return binary_search(array, target, mid + 1, end)
-    return result
+    return
 
 for i in range(m):
     binary_search(array1, array2[i], 0, n-1)

@@ -34,5 +34,21 @@ def answer(array, start, end):
 
 print(answer(array, start, end))
 
+# 7 2
+# 1 1 2 2 2 2 3
+# res = 4
+
+# 7 4
+# 1 1 2 2 2 2 3
+# res = -1
+
+# 9 5
+# 1 1 2 2 3 3 4 4 5
+# res = 1
+
+# 6 2
+# 2 2 2 2 2 2
+# res = 6
+
 
 

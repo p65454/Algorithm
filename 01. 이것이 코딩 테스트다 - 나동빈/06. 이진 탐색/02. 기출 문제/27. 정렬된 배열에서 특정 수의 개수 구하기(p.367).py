@@ -3,7 +3,7 @@ array = list(map(int, input().split()))
 
 start = 0
 end = len(array) - 1
-cnt = 0
+
 def count_x(array, index, target):
     cnt_x = 0
     temp = index + 1

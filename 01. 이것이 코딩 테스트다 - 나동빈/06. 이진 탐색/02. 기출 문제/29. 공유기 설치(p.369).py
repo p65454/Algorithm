@@ -5,28 +5,59 @@ for _ in range(n):
     x = int(input())
     array.append(x)
 array.sort()
-print(array)
+max_gap = array[-1] - array[0]
+min_gap = 1
 
-distance_wifi = []
+
 def BTS(array, start, end):
-    cnt = c - 2
-    mid = (start + end) // 2
-    while(start != mid and mid != end and cnt > 0):
-        print(distance_wifi, cnt)
-        left = array[mid] - array[start]
-        right = array[end] - array[mid]
-        distance_wifi.append(left)
-        distance_wifi.append(right)
-        if left > right:
-            end = mid
-            mid = (start + end) // 2
+    while(start <= end):
+        mid = (start + end) // 2
+        cnt = 1
+        temp = array[0]
+        for i in range(1,n):
+            if array[i] - temp >= mid:
+                temp = array[i]
+                cnt += 1
+        if cnt >= c:
+            start = mid + 1
+            result = mid
         else:
-            start = mid
-            mid = (start + end) // 2
-        cnt -= 1
+            end = mid - 1
 
-    return distance_wifi
-print(BTS(array, 0, n-1))
-result = BTS(array, 0, n-1)
-result.sort()
-print(result[0])
+        print(mid)
+    return result
+
+print(BTS(array, min_gap, max_gap))
+
+
+'''
+12 3
+1
+2
+3
+4
+5
+6
+7
+8
+700
+800
+900
+1000
+# 300
+-----------------------
+12 4
+1
+2
+3
+4
+5
+6
+7
+8
+700
+800
+900
+1000
+# 100
+'''

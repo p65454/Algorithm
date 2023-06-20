@@ -15,7 +15,7 @@ def BTS(array, start, end):
         mid = (start + end) // 2
         cnt = 1
         temp = array[0]
-        for i in range(1,n):
+        for i in range(1, n):
             if array[i] - temp >= mid:
                 temp = array[i]
                 cnt += 1

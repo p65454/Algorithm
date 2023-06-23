@@ -26,34 +26,40 @@ def end_qm(array): # 물음표가 오른쪽에 있을 때 물음표 시작점 in
 def solution(words, queries):
     answer = []
     array = [[] for _ in range(100001)]
+    reverse_array = [[] for _ in range(100001)]
     for word in words:
         array[len(word)].append(word)
-
+        reverse_array[len(word)].append(word[::-1])
     for q in queries:
-        trie = Trie()
+        #trie = Trie()
         result = 0
-        for w in array[len(q)]:
-            if q[0] != '?':
-                index = end_qm(q)
-                query = q[:index]
-                trie.insert(w, len(q))
+        if q[0] != '?':
+            for w in array[len(q)]:
+                trie = Trie()
+                if q[0] != '?':
+                    index = end_qm(q)
+                    query = q[:index]
+                    trie.insert(w, len(query))
+                    if trie.search(query):
+                        result += 1
+
+                    print(result)
+        elif q[0] == '?' and q[-1] == '?':
+            result += 1
+        else:
+            for w in reverse_array[len(q)]:
+                trie = Trie()
+                index = end_qm(q[::-1])
+                query = q[::-1][:index]
+                print(f'query = {query}, index = {index}')
+                trie.insert(w, len(query))
                 if trie.search(query):
                     result += 1
 
                 print(result)
-            elif q[0] == '?' and q[-1] == '?':
-                result += 1
-            else:
-                index = front_qm(q)
-                query = q[index:]
-                trie.insert(w, len(q))
-                if trie.search(query):
-                    result += 1
-
-                print(result)
-        print('------------')
         answer.append(result)
-        print(answer)
+        print('------------')
+
     return answer
 
 
@@ -63,8 +69,10 @@ class Trie:
 
     def insert(self, word, n):
         cur_node = self.root  # 처음 루트로 잡아준다
+        x = n
+        node_list = []
         for c in word:  # 받은 문자열 하나하나에 대해서
-            x = n
+
             if c not in cur_node:  # 현재 노드에 그 문자가 있으면 들어가고, 그렇지 않으면 새로 만든다
                 cur_node[c] = {}
                 #print(cur_node)
@@ -72,10 +80,12 @@ class Trie:
             #print(cur_node)
             #print(cur_node)
             x -= 1
+            node_list.append(c)
             if x == 0:
-                cur_node['*'] = word
+                cur_node['*'] = ''.join(node_list)
             print(cur_node, x)
-        cur_node["*"] = word  # "*" 노드를 만들어 '단어의 끝' 표시를 해 준다.
+        cur_node["*"] = word
+        #print(cur_node)# "*" 노드를 만들어 '단어의 끝' 표시를 해 준다.
         #print('--------------')
         # {'f':{'r': {'o': {'d': {'o': {'*': 'frodo'}}}}}}
     def search(self, query):
@@ -83,6 +93,7 @@ class Trie:
         for c in query:
             if c in cur_node:
                 cur_node = cur_node[c]
+
             else:
                 return False
         return "*" in cur_node  # "*" 가 해당 노드에 있으면 그 글자로 끝나는 단어가 있다는 것이다.\

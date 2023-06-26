@@ -1,7 +1,7 @@
-import heapq, sys
+import heapq
+import sys
 
 n, m, c = map(int, sys.stdin.readline().split())
-
 array = [[] for _ in range(n + 1)]
 for _ in range(m):
     x, y, z = map(int, sys.stdin.readline().split())
@@ -29,11 +29,11 @@ def dijkstra(start):
 
 dijkstra(c)
 cnt = 0
-temp = 0
+time = 0
 for i in range(1, n + 1):
     if distance[i] < INF:
         cnt += 1
-        time = max(temp, distance[i])
+        time = max(time, distance[i])
 
 print(cnt - 1, time)
 print(distance)

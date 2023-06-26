@@ -32,8 +32,8 @@ else:
     print(graph[1][k] + graph[k][x])
 
 
-# for i in range(n+1):
-#     print(graph[i])
+for i in range(n+1):
+    print(graph[i])
 
 
 '''

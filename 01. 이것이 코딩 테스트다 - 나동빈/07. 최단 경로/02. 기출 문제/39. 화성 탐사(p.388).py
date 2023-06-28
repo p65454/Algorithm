@@ -17,7 +17,7 @@ def mars(array, distance, n):
             nx = x + dx[i]
             ny = y + dy[i]
             if 0 <= nx < n and 0 <= ny < n:
-                if dist + array[nx][ny] < distance[nx][ny]: # 이전 값이 더 작다면 새로 갱신 후 큐삽입
+                if dist + array[nx][ny] < distance[nx][ny]:# 이전 값이 더 작다면 새로 갱신 후 큐삽입
                     distance[nx][ny] = dist + array[nx][ny]
                     heapq.heappush(queue, (distance[nx][ny], (nx, ny)))
     return distance[n-1][n-1]
@@ -30,12 +30,11 @@ for _ in range(t):
     array = []
     INF = int(1e9)
     distance = [[INF] * n for _ in range(n)]
-    distance[0][0] = 0
 
     for _ in range(n):
         mars2 = list(map(int, input().split()))
         array.append(mars2)
-
+    distance[0][0] = array[0][0]
     result.append(mars(array, distance, n))
 for i in result:
     print(i)

@@ -25,9 +25,7 @@ def hide_on_bush(start):
                 heapq.heappush(q, (cost, i))
 
 hide_on_bush(start)
-for i in range(len(distance)):
-    if distance[i] == INF:
-        distance[i] = 0
+distance[0] = 0
 
 max_num = max(distance)
 index = distance.index(max_num)

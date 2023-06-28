@@ -11,12 +11,12 @@ def mars(array, distance, n):
         dist, v = heapq.heappop(queue)
         x = v[0]
         y = v[1]
+        if dist > distance[x][y]:  # 이미 거리가 갱신 된 경우 무시
+            continue
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
             if 0 <= nx < n and 0 <= ny < n:
-                if dist > distance[nx][ny]: # 이미 거리가 갱신 된 경우 무시
-                    continue
                 if dist + array[nx][ny] < distance[nx][ny]: # 이전 값이 더 작다면 새로 갱신 후 큐삽입
                     distance[nx][ny] = dist + array[nx][ny]
                     heapq.heappush(queue, (distance[nx][ny], (nx, ny)))

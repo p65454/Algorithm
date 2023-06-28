@@ -1,48 +1,44 @@
-from collections import deque
-def mars(array, distance, visited, n):
+import heapq
+import copy
+def mars(array, distance, n):
     dx = [0, 0, -1, 1]
     dy = [1, -1, 0, 0]
     start = (0, 0)
-    queue = deque()
-    visited[0][0] = True
-    queue.append(start)
+    queue = []
+    #visited[0][0] = True
+    heapq.heappush(queue, (array[0][0], start))
     while queue:
-        x, y = queue.popleft()
+        dist, v = heapq.heappop(queue)
+        x = v[0]
+        y = v[1]
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
             if 0 <= nx < n and 0 <= ny < n:
-                if visited[nx][ny]:
+                if dist > distance[nx][ny]: # 이미 거리가 갱신 된 경우 무시
                     continue
-                queue.append((nx, ny))
-                visited[nx][ny] = True
-                cost = distance[x][y]
-                distance[nx][ny] = min(cost + array[nx][ny], array[x][y] + array[nx][ny])
-
-    return distance
+                if dist + array[nx][ny] < distance[nx][ny]: # 이전 값이 더 작다면 새로 갱신 후 큐삽입
+                    distance[nx][ny] = dist + array[nx][ny]
+                    heapq.heappush(queue, (distance[nx][ny], (nx, ny)))
+    return distance[n-1][n-1]
 
 
 t = int(input())
+result = []
 for _ in range(t):
     n = int(input())
     array = []
     INF = int(1e9)
-    distance = [[0] * n for _ in range(n)]
-    visited = [[False] * n for _ in range(n)]
+    distance = [[INF] * n for _ in range(n)]
+    distance[0][0] = 0
+
     for _ in range(n):
         mars2 = list(map(int, input().split()))
         array.append(mars2)
 
-    for i in range(n):
-        print(array[i])
-
-    result = mars(array, distance, visited, n)
-    for i in range(n):
-        print(result[i])
-
-
-
-
+    result.append(mars(array, distance, n))
+for i in result:
+    print(i)
 
 '''
 3

@@ -26,7 +26,6 @@ def hide_on_bush(start):
 
 hide_on_bush(start)
 distance[0] = 0
-
 max_num = max(distance)
 index = distance.index(max_num)
 max_num_count = distance.count(max_num)

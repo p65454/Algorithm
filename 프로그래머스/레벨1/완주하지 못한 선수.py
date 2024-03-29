@@ -1,6 +1,8 @@
 def solution(participant, completion):
     
     """"
+    https://school.programmers.co.kr/learn/courses/30/lessons/42576
+    
     선수의 수가 최대 10만이라서 for문 2번쓰면 시간초과 예상됨
     먼저 정렬시키고 for문 1번 돌리면서 각 리스트 요소를 순차적으로 비교해서 남는값을 정답으로 처리하자    
     """"

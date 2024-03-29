@@ -1,6 +1,8 @@
 def solution(answers):
     '''
     풀이1)
+    https://school.programmers.co.kr/learn/courses/30/lessons/42840
+    
     for문 돌려서 조건식 때려박으면 되지않을까?
     근데 이렇게 쉬울까? 뭔가 이상한데 일단해보자
     

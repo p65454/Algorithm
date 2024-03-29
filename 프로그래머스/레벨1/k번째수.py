@@ -1,5 +1,7 @@
 def solution(array, commands):
     '''
+    https://school.programmers.co.kr/learn/courses/30/lessons/42748
+    
     풀이1)
     문제대로 슬라이싱 한 다음에 sort 하고 k번째 담아서 return 하면 될거같다
     

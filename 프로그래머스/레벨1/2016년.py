@@ -1,5 +1,8 @@
+#
 def solution(a, b):
     '''
+    https://school.programmers.co.kr/learn/courses/30/lessons/12901
+    
     문제) 2016년 1월 1일 은 금요일이다. 2016년은 윤년이다(2월이 29일까지 존재)
     a, b 두 수를 입력받아서 2016년 a월 b일이 무슨 요일인지 return해라
     답 형태 : SUN,MON,TUE,WED,THU,FRI,SAT 
